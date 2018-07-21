@@ -6,5 +6,10 @@ target 'Marvel Library' do
   use_frameworks!
 
   # Pods for Marvel Library
-
+  # Networking
+  pod 'Alamofire'
+  pod 'AlamofireImage'
+  
+  # Mapping
+  pod 'AlamofireObjectMapper'
 end

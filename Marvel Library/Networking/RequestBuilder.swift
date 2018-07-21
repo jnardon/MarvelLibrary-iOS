@@ -37,6 +37,7 @@ enum RequestBuilder: URLRequestConvertible {
             var urlString = Constants.Url.baseURLString
             if let relativePath = relativePath {
                 urlString.append(relativePath)
+                urlString.append(self.authorizationQuery())
             }
             return URL(string: urlString)!
         }()
@@ -47,5 +48,21 @@ enum RequestBuilder: URLRequestConvertible {
         let encoding = JSONEncoding.default
         return try encoding.encode(urlRequest)
     }
+}
+
+extension RequestBuilder {
+    func authorizationQuery() -> String {
+        let timeStamp = "\(Date().hashValue)"
+        
+        var authorizationQuery = "?"
+        authorizationQuery.append("apikey=\(Constants.API.key)")
+        authorizationQuery.append("&ts=\(timeStamp)")
+        authorizationQuery.append("&hash=\(self.createHash(timeStamp: timeStamp))")
+        
+        return authorizationQuery
+    }
     
+    func createHash(timeStamp: String) -> String {
+        return (timeStamp + Constants.API.privateKey + Constants.API.key).md5!
+    }
 }

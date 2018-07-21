@@ -20,4 +20,13 @@ struct Image: Mappable {
         self.path           <-  map["path"]
         self.imageExtension <-  map["extension"]
     }
+    
+    func imageURL() -> URL? {
+        guard let path = self.path else { return nil }
+        guard let imageExtension = self.imageExtension else { return nil }
+        
+        guard let url = URL(string: path.appending("/portrait_xlarge.").appending(imageExtension)) else { return nil }
+        
+        return url
+    }
 }

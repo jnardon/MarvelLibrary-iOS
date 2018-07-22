@@ -8,10 +8,10 @@
 
 import Foundation
 
-class CharactersPresenter {
+class HomePresenter {
     
-    let interactor: CharactersInteractor
-    weak private var homeView: CharactersView?
+    let interactor: HomeInteractor
+    weak private var homeView: HomeView?
     
     var page = Page()
     var isPaginating = false
@@ -19,11 +19,11 @@ class CharactersPresenter {
     
     // MARK: - Initialization & Configuration
     
-    init(interactor: CharactersInteractor) {
+    init(interactor: HomeInteractor) {
         self.interactor = interactor
     }
     
-    func attachView(view: CharactersView?) {
+    func attachView(view: HomeView?) {
         guard let view = view else { return }
         homeView = view
     }

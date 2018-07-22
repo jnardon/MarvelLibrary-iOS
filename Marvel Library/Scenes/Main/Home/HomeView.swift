@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol CharactersView: class {
+protocol HomeView: class {
     
     func startLoading()
     func finishLoading()

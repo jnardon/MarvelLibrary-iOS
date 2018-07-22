@@ -8,9 +8,9 @@
 
 import UIKit
 
-class CharactersViewController: UITableViewController {
+class HomeViewController: UITableViewController {
 
-    let characterPresenter = CharactersPresenter(interactor: CharactersInteractor())
+    let homePresenter = HomePresenter(interactor: HomeInteractor())
     fileprivate var characters = [Character]()
     
     var isSearching = false
@@ -18,13 +18,13 @@ class CharactersViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        characterPresenter.attachView(view: self)
+        homePresenter.attachView(view: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.characterPresenter.refreshItems()
+        self.homePresenter.refreshItems()
     }
 
     // MARK: - UITableViewDataSource
@@ -71,7 +71,7 @@ class CharactersViewController: UITableViewController {
     }
 }
 
-extension CharactersViewController: CharactersView {
+extension HomeViewController: HomeView {
     
     func startLoading() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
